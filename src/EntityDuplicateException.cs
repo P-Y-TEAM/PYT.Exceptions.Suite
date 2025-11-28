@@ -1,40 +1,43 @@
 ﻿using System;
 
-namespace PYT.Exceptions.Suite;
-
-public class EntityDuplicateException : Exception
+namespace PYT.Exceptions.Suite
 {
-	public Type? EntityType { get; private set; }
-	public string? ParamName { get; private set; }
-	public object? ParamValue { get; private set; }
-	
-	public EntityDuplicateException()
-		: base("Duplicate entity detected.");
-
-	public EntityDuplicateException(string message)
-		: base(message);
-
-	public EntityDuplicateException(string message, Exception innerException)
-		: base(message, innerException);
-
-	public EntityDuplicateException(Type entityType)
-		: base($"Duplicate {entityType} detected.")
+	public class EntityDuplicateException : Exception
 	{
-		EntityType = entityType;
-	}
+		public Type? EntityType { get; private set; }
+		public string? ParamName { get; private set; }
+		public object? ParamValue { get; private set; }
+		
+		public EntityDuplicateException() : base("Duplicate entity detected.")
+		{		
+		}
 
-	public EntityDuplicateException(Type entityType, string paramName)
-		: base($"Duplicate {entityType} with {paramName}.")
-	{
-		EntityType = entityType;
-		ParamName = paramName;
-	}
+		public EntityDuplicateException(string message) : base(message)
+		{
+		}
 
-	public EntityDuplicateException(Type entityType, string paramName, object paramValue)
-		: base($"Duplicate {entityType} with {paramName} = {paramValue}.")
-	{
-		EntityType = entityType;
-		ParamName = paramName;
-		ParamValue = paramValue;
+		public EntityDuplicateException(string message, Exception innerException) : base(message, innerException)
+		{
+		}
+
+		public EntityDuplicateException(Type entityType) : base($"Duplicate {entityType} detected.")
+		{
+			EntityType = entityType;
+		}
+
+		public EntityDuplicateException(Type entityType, string paramName) 
+			: base($"Duplicate {entityType} with {paramName}.")
+		{
+			EntityType = entityType;
+			ParamName = paramName;
+		}
+
+		public EntityDuplicateException(Type entityType, string paramName, object paramValue)
+			: base($"Duplicate {entityType} with {paramName} = {paramValue}.")
+		{
+			EntityType = entityType;
+			ParamName = paramName;
+			ParamValue = paramValue;
+		}
 	}
 }
